@@ -126,3 +126,5 @@ elasticsearch.slowlog.took
 This document provides a step-by-step guide to configuring and checking the Search Slow Logs settings in Elasticsearch. The steps outlined above allow you to put sample data in an index, modify slow log settings, apply search queries, and verify slow log results.
 
 
+![Search Slow Logs Example](images/slowlogs_dashboard.png)
+
