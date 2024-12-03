@@ -72,4 +72,57 @@ POST slow-logs-test/_doc/5
 
 ## Step 3: Change the Search Slow Logs Settings
 
+```json
+PUT /slow-logs-test/_settings
+{
+  "index.search.slowlog.threshold.query.warn": "10s",
+  "index.search.slowlog.threshold.query.info": "5s",
+  "index.search.slowlog.threshold.query.debug": "2s",
+  "index.search.slowlog.threshold.query.trace": "500ms",
+  "index.search.slowlog.threshold.fetch.warn": "1s",
+  "index.search.slowlog.threshold.fetch.info": "800ms",
+  "index.search.slowlog.threshold.fetch.debug": "500ms",
+  "index.search.slowlog.threshold.fetch.trace": "200ms"
+}
+```
+## Step 4: Apply Search Queries to Check Slow Logs Settings
+```json
+GET slow-logs-test/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+GET slow-logs-test/_search
+{
+  "query": {
+    "match": {
+      "description": "guide"
+    }
+  }
+}
+
+GET slow-logs-test/_search
+{
+  "query": {
+    "term": {
+      "author": {
+        "value": "Jane Smith"
+      }
+    }
+  }
+}
+
+```
+## Step 5: Add Search Field Names
+Make sure to add the following search fields:
+
+```bash
+elasticsearch.slowlog.source
+elasticsearch.slowlog.took
+```
+## Conclusion
+This document provides a step-by-step guide to configuring and checking the Search Slow Logs settings in Elasticsearch. The steps outlined above allow you to put sample data in an index, modify slow log settings, apply search queries, and verify slow log results.
+
 
